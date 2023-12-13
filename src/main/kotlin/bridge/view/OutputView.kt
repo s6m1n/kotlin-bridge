@@ -1,25 +1,34 @@
 package bridge.view
 
+import bridge.util.Constant.FAIL
+import bridge.util.Constant.FINAL_RESULT
+import bridge.util.Constant.GAME_START_MESSAGE
+import bridge.util.Constant.INPUT_BRIDGE_SIZE_MESSAGE
+import bridge.util.Constant.INPUT_MOVE_COMMAND_MESSAGE
+import bridge.util.Constant.INPUT_RETRY_COMMAND_MESSAGE
+import bridge.util.Constant.IS_SUCCESS
+import bridge.util.Constant.SUCCESS
+import bridge.util.Constant.TOTAL_TRIAL
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 class OutputView {
 
     fun printStartMessage() {
-        println("다리 건너기 게임을 시작합니다.")
+        println(GAME_START_MESSAGE)
     }
 
     fun printInputBridgeSizeMessage() {
-        println("\n다리의 길이를 입력해주세요.")
+        println(INPUT_BRIDGE_SIZE_MESSAGE)
     }
 
     fun printChoiceMovingPlace() {
-        println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)")
+        println(INPUT_MOVE_COMMAND_MESSAGE)
     }
 
-
     fun printRetry() {
-        println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+        println(INPUT_RETRY_COMMAND_MESSAGE)
     }
 
     /**
@@ -40,17 +49,17 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printResult(isSuccess: Boolean, bridgeResultString: List<String>, round: Int) {
-        println("\n최종 게임 결과")
+        println(FINAL_RESULT)
         printMap(bridgeResultString)
 
-        println("\n게임 성공 여부: ${booleanToString(isSuccess)}")
-        println("총 시도한 횟수: $round")
+        println(IS_SUCCESS + "${booleanToString(isSuccess)}")
+        println(TOTAL_TRIAL + "$round")
     }
 
-    fun booleanToString(boolean: Boolean): String {
+    private fun booleanToString(boolean: Boolean): String {
         return when (boolean) {
-            true -> "성공"
-            false -> "실패"
+            true -> SUCCESS
+            false -> FAIL
         }
     }
 }

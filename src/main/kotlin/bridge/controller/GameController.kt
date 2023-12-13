@@ -3,6 +3,7 @@ package bridge.controller
 import bridge.BridgeRandomNumberGenerator
 import bridge.model.BridgeGame
 import bridge.model.BridgeMaker
+import bridge.util.Constant.RETRY
 import bridge.view.InputView
 import bridge.view.OutputView
 
@@ -57,7 +58,6 @@ class GameController(
     private fun checkRetry(): Boolean {
         outputView.printRetry()
         val isRetry = inputView.readGameCommand() // 입력도 받아야 함
-        return (isRetry == "R")
+        return (isRetry == RETRY)
     }
-
 }

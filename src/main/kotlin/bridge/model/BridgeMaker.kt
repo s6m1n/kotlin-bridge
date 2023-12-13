@@ -1,6 +1,7 @@
 package bridge.model
 
 import bridge.BridgeNumberGenerator
+import bridge.util.Constant.INVALID_VALUE
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -16,7 +17,6 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
             val answer = bridgeNumberGenerator.generate().convertIntToBridgeString()
             bridge.add(answer)
         }
-        println(bridge) // 얘 지워야함~~~!~!~!~!~!~!
         return bridge
     }
 
@@ -26,7 +26,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
             BridgeNum.U.label -> BridgeNum.U.name
             else -> { // else 없애고싶다 ... .
                 "None"
-                throw IllegalArgumentException("[ERROR] 잘못된 값입니다")
+                throw IllegalArgumentException(INVALID_VALUE)
             }
         }
     }

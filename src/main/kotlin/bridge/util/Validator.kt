@@ -1,21 +1,34 @@
 package bridge.util
 
+import bridge.util.Constant.DOWN
+import bridge.util.Constant.INVALID_BRIDGE_MOVING_PLACE
+import bridge.util.Constant.INVALID_BRIDGE_RETRY_COMMAND
+import bridge.util.Constant.INVALID_BRIDGE_SIZE_FORMAT
+import bridge.util.Constant.INVALID_BRIDGE_SIZE_RANGE
+import bridge.util.Constant.MAX_BRIDGE_SIZE
+import bridge.util.Constant.MIN_BRIDGE_SIZE
+import bridge.util.Constant.QUIT
+import bridge.util.Constant.RETRY
+import bridge.util.Constant.UP
+
 object Validator {
     fun validateBridgeSize(size: String): Int {
         return try {
-            require(size.toInt() in (3..20)) { "[ERROR] 3 이상 20 이하의 정수를 입력해주세요" }
+            require(size.toInt() in (MIN_BRIDGE_SIZE..MAX_BRIDGE_SIZE)) { INVALID_BRIDGE_SIZE_RANGE }
             size.toInt()
         } catch (e: NumberFormatException) {
-            throw IllegalArgumentException("[ERROR] 입력값이 숫자가 아닙니다")
+            throw IllegalArgumentException(INVALID_BRIDGE_SIZE_FORMAT)
         }
     }
 
     fun validateMovingPlace(movingPlace: String): String {
-        require(movingPlace == "U" || movingPlace == "D") { "[ERROR] U 또는 D만 입력해주세요" }
+        require(movingPlace == UP || movingPlace == DOWN) { INVALID_BRIDGE_MOVING_PLACE }
         return movingPlace
     }
+
     fun validateRetryCommand(retryCommand: String): String {
-        require(retryCommand == "Q" || retryCommand == "R") { "[ERROR] Q 또는 R만 입력해주세요" }
+        require(retryCommand == QUIT || retryCommand == RETRY) { INVALID_BRIDGE_RETRY_COMMAND }
         return retryCommand
     }
+
 }

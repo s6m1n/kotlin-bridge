@@ -22,24 +22,28 @@ class GameController(
     }
 
     private fun playRound(bridgeSize: Int) {
+        var resultPair = Pair(true, listOf<String>())
+        var roundCount = 0
         do {
+            isRestartable = false
             val bridgeAnswers = bridgeMaker.makeBridge(bridgeSize)
-            playTern(bridgeAnswers)
+            resultPair = playTern(bridgeAnswers)
+            roundCount += 1
         } while (isRestartable)
+        outputView.printResult(resultPair.first, resultPair.second, roundCount)
     }
 
-    private fun playTern(bridgeAnswers: List<String>) {
-        var resultString = listOf<String>()
+    private fun playTern(bridgeAnswers: List<String>): Pair<Boolean, List<String>> {
+        var resultPair = Pair(true, listOf<String>())
         val moveHistory = listOf<MutableList<String>>(mutableListOf(), mutableListOf()) // 빈 다리 문자열 생성
         for (answer in bridgeAnswers) { // 다리 사이즈만큼 턴 반복
-            val resultPair = proceedRound(moveHistory, answer)
-            resultString = resultPair.second
+            resultPair = proceedRound(moveHistory, answer)
             if (!resultPair.first) {
                 isRestartable = checkRetry()
                 break
             }
         }
-        outputView.printMap(resultString)
+        return resultPair
     }
 
     private fun proceedRound(moveHistory: List<MutableList<String>>, answer: String): Pair<Boolean, List<String>> {

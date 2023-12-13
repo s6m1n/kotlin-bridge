@@ -20,7 +20,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         return bridge
     }
 
-    private fun Int.convertIntToBridgeString(): String {
+    fun Int.convertIntToBridgeString(): String {
         return when (this) {
             BridgeNum.D.label -> BridgeNum.D.name
             BridgeNum.U.label -> BridgeNum.U.name

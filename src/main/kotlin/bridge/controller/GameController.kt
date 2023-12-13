@@ -57,7 +57,7 @@ class GameController(
 
     private fun checkRetry(): Boolean {
         outputView.printRetry()
-        val isRetry = inputView.readGameCommand() // 입력도 받아야 함
+        val isRetry = inputView.readGameCommand()
         return (isRetry == RETRY)
     }
 }

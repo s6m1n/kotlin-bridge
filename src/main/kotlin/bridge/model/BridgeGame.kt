@@ -23,7 +23,7 @@ class BridgeGame {
         return makeTurnResult(bridgeString) // 다리 문자열 기반으로 결과 생성
     }
 
-    fun getResult(answer: String, input: String): List<String> {
+    private fun getResult(answer: String, input: String): List<String> {
         val result = when (answer == input) {
             true -> ANSWER
             false -> WRONG_ANSWER

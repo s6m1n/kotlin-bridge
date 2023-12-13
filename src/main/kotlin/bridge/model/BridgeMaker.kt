@@ -20,12 +20,11 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         return bridge
     }
 
-    fun Int.convertIntToBridgeString(): String {
+    private fun Int.convertIntToBridgeString(): String {
         return when (this) {
             BridgeNum.D.label -> BridgeNum.D.name
             BridgeNum.U.label -> BridgeNum.U.name
             else -> { // else 없애고싶다 ... .
-                "None"
                 throw IllegalArgumentException(INVALID_VALUE)
             }
         }

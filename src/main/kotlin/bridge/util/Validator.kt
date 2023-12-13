@@ -14,4 +14,8 @@ object Validator {
         require(movingPlace == "U" || movingPlace == "D") { "[ERROR] U 또는 D만 입력해주세요" }
         return movingPlace
     }
+    fun validateRetryCommand(retryCommand: String): String {
+        require(retryCommand == "Q" || retryCommand == "R") { "[ERROR] Q 또는 R만 입력해주세요" }
+        return retryCommand
+    }
 }

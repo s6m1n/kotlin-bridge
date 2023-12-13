@@ -2,6 +2,7 @@ package bridge.view
 
 import bridge.util.Validator.validateBridgeSize
 import bridge.util.Validator.validateMovingPlace
+import bridge.util.Validator.validateRetryCommand
 import camp.nextstep.edu.missionutils.Console
 
 /**
@@ -39,6 +40,12 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        return try {
+            val retryCommand = Console.readLine()
+            validateRetryCommand(retryCommand)
+        } catch (error: IllegalArgumentException) {
+            println(error.message)
+            readGameCommand()
+        }
     }
 }

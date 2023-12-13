@@ -22,7 +22,7 @@ class GameController(
     }
 
     private fun playRound(bridgeSize: Int) {
-        var resultPair = Pair(true, listOf<String>())
+        var resultPair: Pair<Boolean, List<String>>
         var roundCount = 0
         do {
             isRestartable = false
@@ -56,9 +56,8 @@ class GameController(
 
     private fun checkRetry(): Boolean {
         outputView.printRetry()
-//            inputView. // 입력도 받아야 함
-        val isRetry = true
-        return isRetry
+        val isRetry = inputView.readGameCommand() // 입력도 받아야 함
+        return (isRetry == "R")
     }
 
 }

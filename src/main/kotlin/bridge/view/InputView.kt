@@ -1,8 +1,8 @@
 package bridge.view
 
 import bridge.util.Validator.validateBridgeSize
+import bridge.util.Validator.validateMovingPlace
 import camp.nextstep.edu.missionutils.Console
-import java.util.IllegalFormatException
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -15,7 +15,6 @@ class InputView {
         return try {
             val number = Console.readLine()
             validateBridgeSize(number)
-            number.toInt()
         } catch (error: IllegalArgumentException) {
             println(error.message)
             readBridgeSize()
@@ -26,7 +25,13 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        return try {
+            val movingPlace = Console.readLine()
+            validateMovingPlace(movingPlace)
+        } catch (error: IllegalArgumentException) {
+            println(error.message)
+            readMoving()
+        }
     }
 
     /**
